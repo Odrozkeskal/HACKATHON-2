@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of medicines</title>
+    <link rel="stylesheet" href="/styles.css"> 
+</head>
+<body>
+    <h1>List of medicines</h1> <br>
+    <button onclick="window.location.href='/'" class = "btn">Home</button>
+    <div id="medicine-list">
+        
+        <% medicines.forEach(function(medicine) { %>
+            <div class="medicine-item">
+                <h2><%= medicine['Medicinal products'] %></h2>
+                <p><strong>ATC classification:</strong> <%= medicine['Anatomical, therapeutic and chemical classification (ATC)'] %></p>
+                <p><strong>Dosage form:</strong> <%= medicine['Dosage forms'] %></p>
+                <p><strong>ATC code:</strong> <%= medicine['ATC code'] %></p>
+            </div>
+        <% }) %>
+    </div>
+
+    <script src="/script.js"></script> 
+</body>
+</html>
