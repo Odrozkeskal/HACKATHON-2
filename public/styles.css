@@ -1,13 +1,23 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background-color: #f0f0f0;
     margin: 20px;
 }
 
-h1 {
+h1 {  
+    text-align: center;
+    font-family: 'Merriweather', serif;
     color: #333;
 }
+
+h2 { font-family: 'Merriweather', serif;
+    text-align: center;
+    margin-left: 0; /* Выравнивание заголовка по левому краю */
+}
+
+
 .btn {
+    
     padding: 10px 15px;
     font-size: 12px;
     color: #fff;
@@ -18,7 +28,7 @@ h1 {
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color:  #00796b;;
 }
 
 #medicine-list {
@@ -46,40 +56,6 @@ h1 {
     background-color: #f9f9f9;
 }
 
-form div {
-    margin-bottom: 15px;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-form input, form textarea {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #09b195;
-    color: white;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-h1 {
-    text-align: center;
-}
-
 #medicine-search {
     max-width: 800px;
     margin: 20px auto;
@@ -94,6 +70,8 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #f9f9f9;
+    display:  flex;
+    flex-direction: column;
 }
 
 .medicine-item {
@@ -119,3 +97,185 @@ h1 {
 .medicine-item p {
     font-size: 14px;
 }
+
+/* стили для кнопки возвращающейся вверх страницы */
+.scroll-to-top {
+    position: fixed;
+    top: 20px;
+    right: 100px;
+    background-color: #09b195;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px ;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1000;
+    display: none; /* Скрыть кнопку по умолчанию */
+}
+
+.scroll-to-top.show {
+    display: block;
+}
+  
+.edit-form {
+    display: block; /* Убедитесь, что панель отображается */
+    max-width: 600px; /* Установите максимальную ширину */
+    margin: 20px auto; /* Центрирование панели на странице */
+    padding: 20px; /* Отступ внутри панели */
+    border: 1px solid #ccc; /* Граница вокруг панели */
+    border-radius: 10px; /* Скругление углов */
+    background-color: #fff; /* Цвет фона */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для выделения панели */
+}
+
+.edit-form h2 {
+    margin-top: 0; /* Убираем верхний отступ для заголовка */
+    text-align: center; /* Центрируем заголовок */
+}
+
+.edit-form label {
+    display: block; /* Метки занимают всю доступную ширину */
+    margin-bottom: 8px; /* Отступ снизу */
+}
+
+.edit-form input {
+    width: calc(100% - 22px); /* Поля ввода занимают всю доступную ширину */
+    padding: 10px; /* Отступ внутри полей ввода */
+    border: 1px solid #ccc; /* Граница вокруг полей ввода */
+    border-radius: 5px; /* Скругление углов полей ввода */
+    box-sizing: border-box; /* Учет отступов и границ в ширине */
+    margin-bottom: 10px; /* Отступ снизу для полей ввода */
+}
+
+.edit-form button {
+    padding: 10px 20px; /* Отступ внутри кнопки */
+    border: none; /* Без границы */
+    border-radius: 5px; /* Скругление углов кнопки */
+    background-color: #09b195; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    cursor: pointer; /* Курсор в виде руки */
+    margin-top: 10px; /* Отступ сверху для кнопок */
+    display: block; /* Кнопка занимает всю доступную ширину */
+    width: 100%; /* Кнопка занимает всю доступную ширину */
+}
+/* Стили для поля ввода описания (textarea) */
+.edit-form textarea {
+    width: calc(100% - 22px); /* Ширина, учитывая отступы и границы */
+    height: 150px; /* Устанавливает высоту поля ввода */
+    padding: 10px; /* Отступы внутри поля */
+    border: 1px solid #ccc; /* Граница вокруг поля */
+    border-radius: 5px; /* Скругление углов */
+    box-sizing: border-box; /* Включает отступы и границы в ширину и высоту */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.edit-form button:hover {
+    background-color:  #00796b;; /* Цвет фона кнопки при наведении */
+}
+.edit-form {
+    display: none;
+    margin-top: 20px;
+}
+.medicine-item {
+    margin-bottom: 20px;
+}
+
+#cssActive {
+    max-width: 600px; /* Установите желаемую ширину для формы */
+    margin: auto; /* Центрирование формы */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+#cssActive div {
+    margin-bottom: 15px; /* Отступы между элементами формы */
+}
+
+#cssActive label {
+    display: block;
+    margin-bottom: 5px; /* Отступ от метки к полю ввода */
+}
+
+#cssActive input {
+    width: calc(100% - 22px); /* Подгонка ширины полей ввода */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#cssActive button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #09b195;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; /* Отступ между кнопками */
+}
+
+#cssActive button:hover {
+    background-color: #00796b;;
+}
+
+/* стили для форм поиска на главной странице */
+#medicineForm,
+#symptomsForm {
+    max-width: 600px; /* Установите желаемую ширину формы */
+    margin: 20px auto; /* Отступ сверху и снизу */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+form {
+    display: block;
+    margin: 0 auto;
+}
+
+
+#medicineForm input,
+#symptomsForm input {
+    width: calc(100% - 22px); /* Подгонка ширины полей ввода */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#medicineForm button,
+#symptomsForm button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #09b195;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px; /* Отступ сверху для кнопок */
+}
+
+#medicineForm button:hover,
+#symptomsForm button:hover {
+    background-color: #00796b;;
+}
+
+/* Контейнер для кнопок */
+.button-container {
+    text-align: center; /* Центрирует кнопки внутри контейнера */
+    margin-top: 20px; /* Отступ сверху для контейнера с кнопками */
+}
+
+.button-container button {
+    margin: 5 px; /* Отступ между кнопками */
+}
+
+
+
+
+
+

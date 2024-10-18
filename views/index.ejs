@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Medicine search</title>
+</head>
+<body>
+    <h1>Encyclopedia of Medicines</h1>
+    
+    <% if (user) { %>
+        <p>Hello, <%= user.username %>!</p>
+        <form action="/logout" method="GET">
+            <button type="submit">Logout</button>
+        </form>
+    <% } %>
+    <h2>Medicine search</h2>
+    <form id="medicineForm">
+        <label for="medicineName">Enter a medicine name:</label>
+        <input type="text" id="medicineName" name="medicineName" required> 
+        <button class="btn" type="submit">Search</button>
+    </form> 
+    <form id="symptomsForm"> 
+        <label for="symptoms">Discribe a symptoms:</label>
+        <input type="text" id="symptoms" name="symptoms" required> 
+        <button class="btn" type="submit">Search</button>
+    </form> 
+
+    <div id="medicineResult"></div>
+    
+
+    <br>
+    <div class="button-container">
+        <button onclick="window.location.href='/medicine'" class="btn">Show list of medicines</button>
+        <button onclick="window.location.href='/add'" class="btn">Add medicine</button>
+        <button onclick="window.location.href='/login'" class="btn">Login</button>
+    </div>
+    
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

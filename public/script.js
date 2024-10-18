@@ -80,3 +80,88 @@ document.getElementById('medicineForm').addEventListener('submit', searchMedicin
 
 // Присваиваем обработчик событий для формы поиска по симптомам
 document.getElementById('symptomsForm').addEventListener('submit', searchBySymptoms);
+
+
+// //JavaScript для поиска 
+
+
+//    document.getElementById('searchForm').addEventListener('submit', function(e) {
+//        e.preventDefault(); // Предотвращаем отправку формы
+
+//        const query = document.getElementById('searchInput').value.toLowerCase();
+//        const items = document.querySelectorAll('.medicine-item');
+       
+//        items.forEach(item => {
+//            const title = item.querySelector('h2').textContent.toLowerCase();
+//            const description = item.querySelector('p').textContent.toLowerCase();
+           
+//            // Проверка наличия ключевого слова в названии или описании
+//            if (title.includes(query) || description.includes(query)) {
+//                item.style.display = ''; // Показываем элемент
+//                item.classList.add('highlight'); // Добавляем класс для выделения
+//            } else {
+//                item.style.display = 'none'; // Скрываем элемент
+//                item.classList.remove('highlight'); // Удаляем класс выделения
+//            }
+//        });
+//    });
+document.getElementById('medicineForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const medicineName = document.getElementById('medicineName').value;
+    
+    fetch(`/medicine/search/product/${encodeURIComponent(medicineName)}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsContainer = document.getElementById('medicineResult');
+            resultsContainer.innerHTML = ''; // Очистить предыдущие результаты
+            
+            data.forEach(medicine => {
+                resultsContainer.innerHTML += `
+                    <div class="medicine-item">
+                        <h2>${medicine["Medicinal products"]}</h2>
+                        <p><strong>ATC Classification:</strong> ${medicine["Anatomical, therapeutic and chemical classification (ATC)"]}</p>
+                        <p><strong>Dosage Form:</strong> ${medicine["Dosage forms"]}</p>
+                        <p><strong>ATC Code:</strong> ${medicine["ATC code"]}</p>
+                        <p><strong>Product Name:</strong> ${medicine["Product name"]}</p>
+                        <p><strong>Image:</strong> <img src="${medicine["Image of product"]}" alt="Product Image"></p>
+                        <p><strong>Symptoms:</strong> ${medicine["symptoms"]}</p>
+                        <p><strong>Description:</strong> ${medicine["Description"]}</p>
+                    </div>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('Ошибка при запросе данных', error);
+        });
+});
+
+document.getElementById('symptomsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const symptoms = document.getElementById('symptoms').value;
+    
+    fetch(`/medicine/search/symptoms/${encodeURIComponent(symptoms)}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsContainer = document.getElementById('medicineResult');
+            resultsContainer.innerHTML = ''; // Очистить предыдущие результаты
+            
+            data.forEach(medicine => {
+                resultsContainer.innerHTML += `
+                    <div class="medicine-item">
+                        <h2>${medicine["Product name"]}</h2>
+                        <p><strong>ATC Classification:</strong> ${medicine["Anatomical, therapeutic and chemical classification (ATC)"]}</p>
+                        <p><strong>Dosage Form:</strong> ${medicine["Dosage forms"]}</p>
+                        <p><strong>ATC Code:</strong> ${medicine["ATC code"]}</p>
+                        <p><strong>Product Name:</strong> ${medicine["Product name"]}</p>
+                        <p><strong>Image:</strong> <img src="${medicine["Image of product"]}" alt="Product Image"></p>
+                        <p><strong>Symptoms:</strong> ${medicine["symptoms"]}</p>
+                        <p><strong>Description:</strong> ${medicine["Description"]}</p>
+                    </div>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('Ошибка при запросе данных', error);
+        });
+});
+    

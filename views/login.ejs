@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+       
+        #login-form {
+            max-width: 400px; /* Уменьшение ширины формы */
+            margin: auto; /* Центрирование формы */
+            padding: 20px; /* Отступы вокруг формы */
+            border: 1px solid #ccc;; /* Граница вокруг формы */
+            border-radius: 10px; /* Скругление углов */
+            background-color: #ffffff; /* Белый фон для формы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для выделения формы */
+        }
+        h1 {
+            text-align: center; /* Центрирование заголовка */
+          
+        }
+        .form-group {
+            margin-bottom: 15px; /* Отступ между полями ввода */
+        }
+        .form-group label {
+            display: block; /* Метки занимают всю ширину */
+            margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+        }
+        .form-group input {
+            width: calc(100% - 22px); /* Ширина поля ввода с учетом отступов */
+            padding: 10px; /* Отступы внутри поля ввода */
+            border: 1px solid  #ccc; /* Цвет границы */
+            border-radius: 5px; /* Скругление углов поля ввода */
+            box-sizing: border-box; /* Учет границ и отступов в ширине */
+        }
+        button {
+            width: 100%; /* Кнопка занимает всю ширину */
+            padding: 10px; /* Отступы внутри кнопки */
+            border: none; /* Без границ */
+            border-radius: 5px; /* Скругление углов кнопки */
+            background-color: #09b195; 
+            color: white; /* Цвет текста кнопки */
+            cursor: pointer; /* Курсор в виде руки */
+            transition: background-color 0.3s; /* Плавный переход для фона кнопки */
+        }
+        button:hover {
+            background-color: #00796b; /* Цвет фона при наведении */
+        }
+        .button-container {
+            text-align: center; /* Центрирование кнопок */
+            margin-top: 10px; /* Отступ сверху */
+        }
+    </style>
+</head>
+<body>
+    <div id="login-form">
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="button-container">
+            <button onclick="window.location.href='/'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

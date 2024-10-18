@@ -1,26 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of medicines</title>
-    <link rel="stylesheet" href="/styles.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <title>List of Medicines</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-    <h1>List of medicines</h1> <br>
-    <button onclick="window.location.href='/'" class = "btn">Home</button>
+    <h1>List of Medicines</h1>
+
+    <button onclick="window.location.href='/medicine/'" class="scroll-to-top">Back to Medicines</button>
+    <button onclick="window.location.href='/'" class="btn">Home</button>
+
     <div id="medicine-list">
-        
+        <!-- Форма поиска -->
+        <div>
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="Search for medicines" autocomplete="off">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </div>
+
         <% medicines.forEach(function(medicine) { %>
             <div class="medicine-item">
-                <h2><%= medicine['Medicinal products'] %></h2>
-                <p><strong>ATC classification:</strong> <%= medicine['Anatomical, therapeutic and chemical classification (ATC)'] %></p>
-                <p><strong>Dosage form:</strong> <%= medicine['Dosage forms'] %></p>
-                <p><strong>ATC code:</strong> <%= medicine['ATC code'] %></p>
+                <h2><%= medicine['Medicinal products'] || 'No product name' %></h2>
+                <p><strong>ATC Classification:</strong> <%= medicine['Anatomical, therapeutic and chemical classification (ATC)'] || 'Not available' %></p>
+                <p><strong>Dosage Form:</strong> <%= medicine['Dosage forms'] || 'Not available' %></p>
+                <p><strong>ATC Code:</strong> <%= medicine['ATC code'] || 'Not available' %></p>
+                <p><strong>Product Name:</strong> <%= medicine['Product name'] || 'Not available' %></p>
+                <p><strong>Image:</strong> <img src="<%= medicine['Image of product'] || 'placeholder.png' %>" alt="Product Image"></p>
+                <p><strong>Symptoms:</strong> <%= medicine['symptoms'] || 'Not available' %></p>
+                <p><strong>Description:</strong> <%= medicine['Description'] || 'Not available' %></p>
+
+                <% if (user && user.role === 'admin') { %>
+                    <button onclick="showEditForm('<%= medicine.id %>')" class="btn">Update</button>
+                <% } %>
+
+                <div id="edit-form-<%= medicine.id %>" class="edit-form">
+                    <h3>Edit Medicine</h3>
+                    <form action="/medicine/update/<%= medicine.id %>" method="POST">
+                        <label for="atcClassification">ATC Classification:</label>
+                        <input type="text" id="atcClassification" name="atcClassification" value="<%= medicine['Anatomical, therapeutic and chemical classification (ATC)'] %>"><br>
+
+                        <label for="medicinalProducts">Medicinal Products:</label>
+                        <input type="text" id="medicinalProducts" name="medicinalProducts" value="<%= medicine['Medicinal products'] %>"><br>
+
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" name="productName" value="<%= medicine['Product name'] %>"><br>
+
+                        <label for="dosageForms">Dosage Forms:</label>
+                        <input type="text" id="dosageForms" name="dosageForms" value="<%= medicine['Dosage forms'] %>"><br>
+
+                        <label for="atcCode">ATC Code:</label>
+                        <input type="text" id="atcCode" name="atcCode" value="<%= medicine['ATC code'] %>"><br>
+
+                        <label for="imageOfProduct">Image URL:</label>
+                        <input type="text" id="imageOfProduct" name="imageOfProduct" value="<%= medicine['Image of product'] %>"><br>
+
+                        <label for="symptoms">Symptoms:</label>
+                        <input type="text" id="symptoms" name="symptoms" value="<%= medicine['symptoms'] %>"><br>
+
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description"><%= medicine['Description'] %></textarea><br>
+
+                      
+
+                        <button type="submit" class="btn">Save Changes</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
     </div>
 
-    <script src="/script.js"></script> 
+    <script>
+        function showEditForm(id) {
+            const form = document.getElementById(`edit-form-${id}`);
+            form.style.display = form.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+    <!-- JavaScript для поиска -->
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.medicine-item');
+
+            items.forEach(item => {
+                const title = item.querySelector('h2').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(query) || description.includes(query)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script src="/script.js"></script>
 </body>
+
 </html>
