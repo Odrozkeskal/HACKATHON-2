@@ -23,6 +23,8 @@ npm start
 In your browser, navigate to: http://localhost:3000/
 You should see your application.
 
+ ### 5. Video 
+ [Watch the application video](https://www.youtube.com/watch?v=Z1pj9nw82XA)
 
 
 
